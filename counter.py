@@ -125,6 +125,8 @@ def hit_or_stand(arvalue, avail_cards):
     prob_stand = np.array([0.0, 0, 0, 0, 0, 0, 0])
     prob_stand[split_up(arvalue)] = 1
     chance_stand = compare_chance(probDealer, prob_stand)
+    chance_hit = 0.0
+
     for i in range(10):
         avail_cards1 = copy.deepcopy(avail_cardss)
         prob1 = prob
@@ -144,15 +146,15 @@ def hit_or_stand(arvalue, avail_cards):
             probPlayer[split_up(arvalue)] += prob
             probPlayer = probPlayer1
             prob = prob1
-    chance_hit = compare_chance(probDealer, probPlayer)
+            chance_hit = compare_chance(probDealer, probPlayer)
     if chance_hit > chance_stand:
         return False
     else:
         return True
 
 
-dealer([2, 0], avail_cards)
-print(hit_or_stand([20, 0], avail_cards))
+dealer([7, 0], avail_cards)
+print(hit_or_stand([19, 0], avail_cards))
 
 '''
 while(roundCount <= amount*52):
